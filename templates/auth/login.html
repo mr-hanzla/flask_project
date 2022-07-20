@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+
+{% block header %}
+    <h1>{% block title %}Log In{% endblock title %}</h1>
+{% endblock header %}
+
+{% block content %}
+    <h1>In da login.html page</h1>
+    <form method="post">
+        <label for="username" >Username</label>
+        <input type="text" id="username" name="username" placeholder="username" autofocus autocomplete="off" required>
+        <label for="password" >Password</label>
+        <input type="password" id="password" name="password" placeholder="password" required>
+        <!-- <input type="password" name="confirm_password"> -->
+        <input type="submit" value="Login!">
+
+    </form>
+{% endblock content %}

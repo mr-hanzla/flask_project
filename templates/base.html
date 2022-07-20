@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>{% block title %}{% endblock title %}</title>
+        <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}" >
+        {% block links %} {% endblock links %}
+    </head>
+    <body class="content">
+        <nav>
+            <h1>Flask App</h1>
+            <ul>
+                {% if g.user %}
+                    <li><span>{{ g.user['username'].capitalize() }}</span></li>
+                    <li><a href="{{ url_for('auth.logout') }}">Log Out</a></li>
+                {% else %}
+                <li><a href="{{ url_for('auth.register') }}">Register</a></li>
+                <li><a href="{{ url_for('auth.login') }}">Log In</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+        <header>{% block header %} {% endblock header %}</header>
+        {% for message in get_flashed_messages() %}
+            <div class="flash">{{ message }}</div>
+        {% endfor %}
+        {% block content %} {% endblock content %}
+        {% block footer %} {% endblock footer %}
+    </body>
+</html>

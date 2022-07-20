@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}TicTacToe{% endblock %}
+{% block content %}
+<h1>Tic Tac Toe</h1>
+<table>
+    {% for i in range(3) %}
+        <tr>
+            {% for j in range(3) %}
+                <td>
+                    {% if game.board[i][j] %}
+                        {{ game.board[i][j] }}
+                    {% else %}
+                        {% if game.winner %}
+                            <a href="#">GameOver</a>
+                        {% else %}
+                            <a href="{{ url_for('ttt.move', row=i, col=j) }}">place [{{ game.turn }}]</a>
+                        {% endif %}
+                    {% endif %}
+                </td>
+            {% endfor %}
+        </tr>
+    {% endfor %}
+</table>
+{% if game.winner %}
+    {% if game.winner == 'N' %}
+        <h2>Game Over, Nobody Won!</h2>
+    {% else %}
+        <h2>Player {{ game.winner }} has won the Game!</h2>
+    {% endif %}
+{% endif %}
+
+<h3>
+    <a href="{{ url_for('ttt.clear') }}" >Reset Game</a>
+</h3>
+{% endblock %}

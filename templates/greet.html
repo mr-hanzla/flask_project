@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+
+{% block title %}Salam Page{% endblock title %}
+{% block content %}
+    {% if name %}
+        <h1>Salam {{ name.capitalize() }}, How are you?</h1>
+    {% else %}
+        <h1>Salam Brother, How are you?</h1>
+    {% endif %}
+{% endblock content %}
